@@ -87,7 +87,6 @@ namespace UnitTestForRegex
                 string expected = "Email is invalid";
                 Assert.AreEqual(expected, ex.Message);
             }
-
         }
         //Test for valid email
         [TestMethod]
@@ -98,6 +97,31 @@ namespace UnitTestForRegex
             string expected = "Valid";
             Assert.AreEqual(actual, expected);
 
+        }
+        //Test for valid Phone Number
+        [TestMethod]
+        [TestCategory("PhoneNumber")]
+        public void TestForValidPhoneNumber()
+        {
+            string actual = RegexAllMethods.PhoneNumberValidation("91 9866201443");
+            string expected = "Valid";
+            Assert.AreEqual(actual, expected);
+
+        }
+        //Checking with Null
+        [TestMethod]
+        [TestCategory("PhoneNumber")]
+        public void TestForPhoneNumber()
+        {
+            try
+            {
+                RegexAllMethods.PhoneNumberValidation(null);
+            }
+            catch (RegexCustomException ex)
+            {
+                string expected = "Null";
+                Assert.AreEqual(expected, ex.Message);
+            }
         }
     }
 }

@@ -79,7 +79,6 @@ namespace UsingExceptionsInRegex
                 Console.WriteLine(email + " ----->Invalid");
                 result = "Invalid";
             }
-
             if (result == "Invalid")
             {
                 throw new RegexCustomException(RegexCustomException.ExceptionType.INVALID_EMAIL, "Email is invalid");
@@ -87,6 +86,35 @@ namespace UsingExceptionsInRegex
             else
             {
                 return result;
+            }
+        }
+        //Validating for phonenumber
+        public static string PhoneNumberValidation(string number)
+        {
+            string result = "Valid";
+            string pattern = @"^[1-9]{2}[ ][0-9]{10}$";
+            Regex regex = new Regex(pattern);
+            if (number != null)
+            {
+                Match match = regex.Match(number);
+                if (match.Success)
+                {
+                    Console.WriteLine(number + " ------>Valid");
+                    result = "Valid";
+                }
+                else
+                {
+                    Console.WriteLine(number + " ------>Invalid");
+                    result = "Invalid";
+                }
+                if (result == "Invalid")
+                    throw new RegexCustomException(RegexCustomException.ExceptionType.INVALID_PHONE, "Invalid PhoneNumber");
+                else
+                    return result;
+            }
+            else
+            {
+                throw new RegexCustomException(RegexCustomException.ExceptionType.NULL_MESSAGE, "Null");
             }
         }
     }
