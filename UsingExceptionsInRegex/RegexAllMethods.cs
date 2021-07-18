@@ -117,5 +117,31 @@ namespace UsingExceptionsInRegex
                 throw new RegexCustomException(RegexCustomException.ExceptionType.NULL_MESSAGE, "Null");
             }
         }
+        //Checks for Valid Password
+        public static string Password(string password)
+        {
+            string result = "Valid";
+            string pattern = @"^[a-z]*[A-Z][a-z]*.[a-z]*[0-9][a-z]*$";
+            Regex regex = new Regex(pattern);
+
+            Match match = regex.Match(password);
+            if (match.Success)
+            {
+                Console.WriteLine(password + " ----->Valid");
+                result = "Valid";
+            }
+            else
+            {
+                Console.WriteLine(password + " ----->Invalid");
+                result = "Invalid";
+            }
+
+            if (result == "Invalid")
+                throw new RegexCustomException(RegexCustomException.ExceptionType.INVALID_PASSWORD, "Invalid Password");
+            else
+            {
+                return result;
+            }
+        }
     }
 }

@@ -123,5 +123,35 @@ namespace UnitTestForRegex
                 Assert.AreEqual(expected, ex.Message);
             }
         }
+        //Test for valid password
+        [TestMethod]
+        [TestCategory("Password")]
+        public void TestMethodPassword()
+        {
+            try
+            {
+                RegexAllMethods.Password("awsvWf&2");
+            }
+            catch (RegexCustomException ex)
+            {
+                string expected = "Valid";
+                Assert.AreEqual(expected, ex.Message);
+            }
+        }
+        //Test for invalid password
+        [TestMethod]
+        [TestCategory("Password")]
+        public void TestMethodInvalidPassword()
+        {
+            try
+            {
+                RegexAllMethods.Password("awsvWf&2#");
+            }
+            catch (RegexCustomException ex)
+            {
+                string expected = "Invalid Password";
+                Assert.AreEqual(expected, ex.Message);
+            }
+        }
     }
 }
