@@ -64,5 +64,30 @@ namespace UsingExceptionsInRegex
                 throw new RegexCustomException(RegexCustomException.ExceptionType.EMPTY_MESSAGE, "Empty Last Name");
             }
         }
+        //checks for valid email
+        public static string MailVerification(string email)
+        {
+            string result = "Valid";
+            Regex regex = new Regex(@"^abc([+. \-_]{1}\w+)?@[a-z0-9]+\.[a-z]{2,3}(\.[a-z]{2,3})?$");
+            Match match = regex.Match(email);
+            if (match.Success)
+            {
+                Console.WriteLine(email + " ----->Valid");
+            }
+            else
+            {
+                Console.WriteLine(email + " ----->Invalid");
+                result = "Invalid";
+            }
+
+            if (result == "Invalid")
+            {
+                throw new RegexCustomException(RegexCustomException.ExceptionType.INVALID_EMAIL, "Email is invalid");
+            }
+            else
+            {
+                return result;
+            }
+        }
     }
 }

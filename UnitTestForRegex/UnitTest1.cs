@@ -9,6 +9,7 @@ namespace UnitTestForRegex
     {
         //Test for valid first name
         [TestMethod]
+        [TestCategory("First Name")]
         public void TestMethodforValidFirstName()
         {
             string expected = "Valid";
@@ -18,6 +19,7 @@ namespace UnitTestForRegex
         }
         // Test for invalid first name
         [TestMethod]
+        [TestCategory("First Name")]
         public void TestMethodforInValidFirstName()
         {
             string expected = "Invalid";
@@ -25,8 +27,9 @@ namespace UnitTestForRegex
             Assert.AreEqual(expected, actual);
 
         }
-        //Test for empty name
+        //Testing for empty Name
         [TestMethod]
+        [TestCategory("First Name")]
         public void TestMethodforEmptyName()
         {
             try
@@ -42,6 +45,7 @@ namespace UnitTestForRegex
         }
         //Test for Valid last name
         [TestMethod]
+        [TestCategory("Last Name")]
         public void TestMethodforLastName()
         {
             try
@@ -56,6 +60,7 @@ namespace UnitTestForRegex
         }
         //test for invalid last name
         [TestMethod]
+        [TestCategory("Last Name")]
         public void TestMethodforInvalidLastName()
         {
             try
@@ -67,6 +72,32 @@ namespace UnitTestForRegex
                 string expected = "Invalid Last Name";
                 Assert.AreEqual(expected, ex.Message);
             }
+        }
+        //test for invalid email
+        [TestMethod]
+        [TestCategory("Email")]
+        public void TestForInvalidEmail()
+        {
+            try
+            {
+                RegexAllMethods.MailVerification("abc@%*.com");
+            }
+            catch (RegexCustomException ex)
+            {
+                string expected = "Email is invalid";
+                Assert.AreEqual(expected, ex.Message);
+            }
+
+        }
+        //Test for valid email
+        [TestMethod]
+        [TestCategory("Email")]
+        public void TestForValidEmail()
+        {
+            string actual = RegexAllMethods.MailVerification("abc@gmail.com");
+            string expected = "Valid";
+            Assert.AreEqual(actual, expected);
+
         }
     }
 }
