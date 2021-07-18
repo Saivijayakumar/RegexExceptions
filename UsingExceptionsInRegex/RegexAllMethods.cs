@@ -37,5 +37,32 @@ namespace UsingExceptionsInRegex
             }
             return result;
         }
+        //checking Last name valid or not
+        public static string CheckLastName(string lastName)
+        {
+            string result = "Valid";
+            Regex regex = new Regex(@"^[A-Z]{1}[a-z]{2,}");
+            if (lastName != "")
+            {
+                Match match = regex.Match(lastName);
+                if (match.Success)
+                {
+                    Console.WriteLine(lastName + " ----->Valid");
+                }
+                else
+                {
+                    Console.WriteLine(lastName + " ----->Invalid");
+                    result = "Invalid";
+                }
+                if (result == "Invalid")
+                    throw new RegexCustomException(RegexCustomException.ExceptionType.INVALID_NAME, "Invalid Last Name");
+                else
+                    return result;
+            }
+            else
+            {
+                throw new RegexCustomException(RegexCustomException.ExceptionType.EMPTY_MESSAGE, "Empty Last Name");
+            }
+        }
     }
 }
