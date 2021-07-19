@@ -126,7 +126,7 @@ namespace UnitTestForRegex
         //Test for valid password
         [TestMethod]
         [TestCategory("Password")]
-        public void TestMethodPassword()
+        public void TestMethodValidPassword()
         {
             try
             {
@@ -152,6 +152,24 @@ namespace UnitTestForRegex
                 string expected = "Invalid Password";
                 Assert.AreEqual(expected, ex.Message);
             }
+        }
+        //Test for object creation for RegexAllMethods class by using Default Constructor
+        [TestMethod]
+        [TestCategory("Reflection")]
+        public void TestCreateObjectWithDefaultConstructor()
+        {
+            object expected = new RegexAllMethods();
+            object actual = ReflectionFactory.CreateingObjectForDefaultConstructor("UsingExceptionsInRegex.RegexAllMethods", "RegexAllMethods");
+            expected.Equals(actual);
+        }
+        //Test for object creation for RegexAllMethods class by using Parameterized Constructor
+        [TestMethod]
+        [TestCategory("Reflection")]
+        public void TestCreateObjectWithParameterConstructor()
+        {
+            object expected = new RegexAllMethods("Parameter Constructor");
+            object actual = ReflectionFactory.CreateingObjectForParameterizedConstructor("UsingExceptionsInRegex.RegexAllMethods", "RegexAllMethods", "Parameter Constructor");
+            actual.Equals(expected);
         }
     }
 }
